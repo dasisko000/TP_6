@@ -1,0 +1,91 @@
+TP 6 – Advent of Code 2025
+Jour 1 : Coffre à cadran rotatif
+Objectif du travail
+
+L’objectif de ce TP est de simuler le fonctionnement d’un cadran circulaire numéroté de 0 à 99, en appliquant une suite de rotations lues depuis un fichier d’entrée nommé 01.input.
+
+Le cadran commence toujours à la position 50.
+Chaque rotation est définie par :
+
+une direction : L (gauche) ou R (droite),
+
+une distance indiquant le nombre de positions à parcourir.
+
+Deux questions sont posées :
+
+Question 1 : compter le nombre de fois où le cadran termine exactement sur la position 0 après une rotation complète.
+Résultat obtenu : 1040
+
+Question 2 : compter le nombre de fois où le cadran passe par la position 0, même s’il ne s’y arrête pas.
+Résultat obtenu : 6027
+
+Question 1 – Fin de rotation sur 0
+Méthode
+
+J’ai écrit un programme en langage C qui :
+
+Ouvre le fichier 01.input.
+
+Lit chaque ligne contenant une rotation (direction L ou R suivie d’une distance).
+
+Met à jour la position du cadran en utilisant l’opérateur modulo 100 afin de gérer le caractère circulaire du cadran.
+
+Après chaque rotation complète, vérifie si la position finale est égale à 0.
+
+Incrémente un compteur à chaque fois que cette condition est vérifiée.
+
+Les mises à jour de position sont effectuées avec les formules suivantes :
+
+Rotation à droite :
+position = (position + distance) % 100
+
+Rotation à gauche :
+position = (position - distance + 100) % 100
+
+Résultat
+
+Le programme affiche le nombre total de fois où le cadran termine exactement sur la position 0 après une rotation complète.
+Le code utilisé pour cette question est présenté dans le fichier Q1.
+
+Question 2 – Passage par 0 pendant la rotation
+Méthode
+
+Pour répondre à la deuxième question, j’ai adopté une approche différente :
+
+Au lieu de déplacer le cadran directement de plusieurs positions, la rotation est effectuée pas à pas, une position à la fois.
+
+À chaque déplacement élémentaire, le programme vérifie si le cadran passe par la position 0.
+
+Chaque passage par 0 est comptabilisé, même si la rotation ne se termine pas sur cette position.
+
+Cette méthode permet également de gérer correctement les grandes distances, par exemple R1600, qui correspond à plusieurs tours complets du cadran.
+
+Deux compteurs sont utilisés :
+
+un compteur pour les fins sur 0 (Question 1),
+
+un compteur pour les passages par 0 (Question 2).
+
+Résultat
+
+Le programme affiche :
+
+le nombre de fins de rotation sur 0 (Question 1),
+
+le nombre total de passages par la position 0 (Question 2).
+
+Le code correspondant à cette version est donné dans le fichier Q2.
+
+Conclusion
+
+Ce travail m’a permis de :
+
+manipuler des fichiers en langage C,
+
+utiliser l’opérateur modulo pour simuler un système circulaire,
+
+distinguer une condition finale (fin sur 0) d’un événement intermédiaire (passage par 0),
+
+vérifier l’absence de fuite mémoire grâce à la fermeture correcte du fichier.
+
+Les résultats obtenus sont conformes aux exemples fournis et au fichier d’entrée 01.input.
